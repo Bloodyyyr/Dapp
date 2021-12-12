@@ -65,11 +65,11 @@ contract Voting is Ownable {
         _;
     }
     
-    function tailleDuTableau() public view returns(uint){
+    function tableauSize() public view returns(uint){
         return addressWaitRegistration.length;
     }
     
-    function attenteDenregistrement(address _voterAddress) public isRightWorkflowStatus(WorkflowStatus.RegisteringVoters){
+    function waitForRegistration(address _voterAddress) public isRightWorkflowStatus(WorkflowStatus.RegisteringVoters){
         require(voters[_voterAddress].waitRegister == false);
         
         addressWaitRegistration.push(_voterAddress);
@@ -77,7 +77,7 @@ contract Voting is Ownable {
     }
     
     
-    function voirEnumParString() public view returns(string memory){
+    function seeEnumByString() public view returns(string memory){
         
         if(WorkflowStatus.RegisteringVoters == status) return "Enregistrement des votant";
         if(WorkflowStatus.ProposalsRegistrationStarted == status) return "Enregistrement des proposition";
